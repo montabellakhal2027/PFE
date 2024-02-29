@@ -1,0 +1,15 @@
+graph TD;
+    A[Code Repository] --> B[CI Server];
+    B --> C[Automated Tests];
+    C --> D[Build Artifact];
+    D --> E[Artifact Repository];
+    B --> F[CD Server];
+    F --> G[Deployment to Staging];
+    G --> H[Automated Tests];
+    H --> I[Staging Environment];
+    G --> J[Manual Approval];
+    J --> I;
+    I --> K[Deployment to Production];
+    K --> L[Automated Tests];
+    L --> M[Production Environment];
+    M --> N[Monitoring and Alerts];
