@@ -1,0 +1,14 @@
+sequenceDiagram
+    actor Admin
+    Admin ->>+ Outil Monitoring: Se connecte
+    Outil Monitoring -->>- Admin : Envoie une requête pour obtenir les métriques et les informations sur l'état.
+    Outil Monitoring ->>+ Cluster Kubernetes : Envoie une requête pour obtenir les métriques et les informations sur l'état.
+     Cluster Kubernetes ->>+ Outil Monitoring : Répond avec les données demandées
+     Outil des analyse des Données->>+ Cluster  : Il analyse les données reçues
+     Outil des analyse des Données->>+ Cluster  : Génère des graphiques et des rapports basés sur ces données
+     Outil des analyse des Données->>+ Cluster  : affiche les métriques et les alertes à l'administrateur via une interface utilisateur.
+     Admin ->>+ Interface de configuration: définir les seuils d'alerte
+     Admin ->>+Outil Monitoring :enregistre les seuils d'alerte
+     Outil Monitoring->>+métriques: Surveillle en continu en fonction des seuils d'alertes définis
+     métriques->>- Outil Monitoring: Error
+     Outil Monitoring->>-Admin :Envoi des notifications via différents canaux (email, SMS, etc...)
