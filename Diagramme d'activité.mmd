@@ -1,0 +1,19 @@
+stateDiagram-v2
+S1:Collecte des métriques par Prometheus 
+S2:Stockage des métriques dans une base de données de séries temporelles
+S3:Définition des règles d'alerte
+S4:Surveillance continue des métriques
+S5:Si une règle est déclenchée
+True:Envoi d'une alerte via un canal spécifi
+False: Pas d'alerte déclenchée
+state if_state <<choice>>
+ [*] --> S1: Début
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> if_state
+    if_state --> True
+    if_state --> False
+    True --> S4: Retour à la surveillance
+    False -->[*]
